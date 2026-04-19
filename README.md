@@ -4,7 +4,7 @@ A quick self-hosted analytics tool powered by Node.js, Express, and SQLite
 [API Reference](#api-reference) • [Self-hosted Setup](#self-hosting-korgostats) • [Dashboard](https://stats.sirkorgo.com)
 
 ## Setup Korgostats on Your Site
-For those who don't want to self host the server needed for Korgostats, you can use my instance on korgoserver.
+For those who don't want to self host the server needed for Korgostats, you can use my instance hosted on korgoserver for free, forever.
 
 **To add tracking**, paste this snippet in your HTML file just before </body>
 ```html
