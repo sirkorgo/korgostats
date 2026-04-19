@@ -1,0 +1,11 @@
+services:
+   korgostats:
+     container_name: korgostats
+     image: node:20-alpine
+     working_dir: /app
+     command: sh -c "npm install && node server.js"
+     ports:
+       - "3100:3000"
+     volumes:
+       - ./data:/app/data # enclosing folder location for database
+       - ./:/app # location of server installation
