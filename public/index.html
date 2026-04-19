@@ -68,14 +68,15 @@
 
         const res = await fetch(CONFIG.apiUrl + '/dashboard');
         const data = await res.json();
-        const match = data.find(s => s.site === site);
 
-        const favicon = `https://www.google.com/s2/favicons?domain=${match.site}&sz=32`;
+        const match = data.find(s => s.site === site);
 
         if (!match) {
             document.getElementById('results').innerHTML = '<p style="text-align:center">No entries found for ' + site + '</p>';
             return;
         }
+
+        const favicon = `https://www.google.com/s2/favicons?domain=${match.site}&sz=32`;
 
         const maxPageHits = Math.max(...match.pages.map(p => p.hits));
         const maxSourceHits = Math.max(...match.sources.map(s => s.hits));
