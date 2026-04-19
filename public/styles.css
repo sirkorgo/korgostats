@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Outfit:wght@100..900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+    height: fit-content;
+    text-align: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 10px;
+    width: 95%;
+    padding: 10px 10px;
+}
+
+p {
+    font-family: "Cabin";
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0px;
+}
+
+h2 {
+    font-family: "Cabin";
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0;
+}
+
+h3 {
+    font-family: "Cabin";
+    font-weight: 500;
+    font-size: 17px;
+    margin: 5px 0px;
+}
+
+a {
+    color: black;
+}
+
+/* scrolling background tile */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  -webkit-mask-image: radial-gradient(circle 1px at 50vw 50vh, #eaeaea 10%, transparent 500px);
+  mask-image: radial-gradient(circle 1px at 50vw 50vh, #eaeaea 10%, transparent 500px);
+}
+
+.bg-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(https://www.sirkorgo.com/src/img/bg.webp);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: scrollBackground 2000s linear infinite;
+}
+
+@keyframes scrollBackground {
+  from { background-position: 0% 0%; }
+  to   { background-position: 10000vw 10000vh; }
+}
+
+body > *:not(.navContainer) {
+  animation: zoomIn 0.18s ease-out;
+  will-change: opacity, transform;
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.post {
+  background: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  flex: 1;
+  height: 95%;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  font-family: "Cabin";
+}
+
+.results {
+    width: 100%;
+    display: flex; flex-direction: column;
+}
+
+.searchbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: fit-content;
+    max-height: 50px;
+}
+
+.searchbox input {
+  min-width: 50% ;
+  width: fit-content;
+  height: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #a9a9a9;
+  background: linear-gradient(180deg, #fff 0%, #d8d5d5 100%);
+  font-family: "Cabin";
+  color: #000;
+}
+
+.searchbox button {
+  width: fit-content;
+  min-width: 60px;
+  height: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #1b6fff;
+  background: linear-gradient(180deg, #0a53ff 0%, #81a7ff 100%);
+  color: white;
+  font-family: "Cabin";
+}
+
+.searchbox button:hover {
+    border: 1px solid #1b6fff;
+  background: linear-gradient(180deg, #86aaff 0%, #417aff 100%);
+  color: white;
+}
+
+.table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+}
+
+.table-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 14px 12px;
+    width: auto;
+}
+
+.site-header { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 4px; }
+.site-icon { width: 36px; height: 36px; border-radius: 8px; background: #eaeaea; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #555; flex-shrink: 0; }
+.site-name { font-size: 17px; font-weight: 700; color: #111; }
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.metric { background: #f5f5f5; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+.metric-label { font-size: 12px; color: #888; }
+.metric-value { font-size: 22px; font-weight: 700; color: #111; }
+.section { display: flex; flex-direction: column; gap: 8px; }
+.section-title { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+.row-list { display: flex; flex-direction: column; gap: 6px; }
+.row { display: flex; align-items: center; gap: 10px; }
+.row-label { font-size: 14px; color: #333; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: "DM Mono"; }
+.row-bar-wrap { flex: 2; background: #eee; border-radius: 99px; height: 6px; overflow: hidden; }
+.row-bar { height: 6px; border-radius: 99px; background: #3076f0; transition: width 0.3s ease; }
+.row-count { font-size: 13px; color: #888; min-width: 30px; text-align: right; font-family: "DM Mono"; }

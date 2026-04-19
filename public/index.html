@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=database_search" />
+</head>
+
+<body>
+    <div class="bg-layer"></div>
+    <section class="container">
+        <nav>
+            <img src="https://www.sirkorgo.com/src/img/sitelogo.webp" width="50px" height="40px">
+            <h3 style="margin: 0;">Korgostats</h3>
+            <div style="display: flex; justify-content: flex-end; width: 100%;">
+                <a href="https://github.com/sirkorgo/korgostats"><svg aria-hidden="true" focusable="false"
+                        class="octicon octicon-mark-github" viewBox="0 0 24 24" width="32" height="32"
+                        fill="currentColor" display="inline-block" overflow="visible"
+                        style="vertical-align:text-bottom">
+                        <path
+                            d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943">
+                        </path>
+                    </svg></a>
+            </div>
+        </nav>
+        <main>
+            <div class="searchbox">
+                <input type="text" id="search" placeholder="sirkorgo.com" />
+                <button onclick="lookup()"><span class="material-symbols-outlined" style="font-size: 20px;">
+                        database_search
+                    </span></button>
+            </div>
+            <div class="post" id="results">
+                <p style="text-align: center;">Enter a site name in the searchbox above to view a site's statistics.
+                    Make sure to include the subdomain.</p>
+            </div>
+        </main>
+    </section>
+    <footer
+        style="padding-top: 45px; padding-bottom: 20px; text-align: center; align-items: center; gap: 15px; display: flex; flex-direction: column; justify-content: center;">
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+            type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#3076f0', 'T6T61WP8KV'); kofiwidget2.draw();</script>
+        <p style="text-align: center;">©Sirkorgo 2026. Developed by
+            Sirkorgo</p>
+    </footer>
+</body>
+<script src="./config.js"></script>
+<script>
+    async function lookup() {
+        const site = document.getElementById('search').value.trim();
+        if (!site) return;
+
+        const res = await fetch(CONFIG.apiUrl + '/dashboard');
+        const data = await res.json();
+        const match = data.find(s => s.site === site);
+
+        const favicon = `https://www.google.com/s2/favicons?domain=${match.site}&sz=32`;
+
+        if (!match) {
+            document.getElementById('results').innerHTML = '<p style="text-align:center">No entries found for ' + site + '</p>';
+            return;
+        }
+
+        const maxPageHits = Math.max(...match.pages.map(p => p.hits));
+        const maxSourceHits = Math.max(...match.sources.map(s => s.hits));
+        const initials = match.site.slice(0, 2).toUpperCase();
+
+        document.getElementById('results').innerHTML = `
+            <div class="results">
+                <div class="site-header">
+                        <img src="${favicon}" width="25" height="25" style="border-radius: 6px;" onerror="this.style.display='none'">
+                        <div class="site-name">${match.site}</div>
+                </div>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Unique visitors</span>
+                        <span class="metric-value">${match.total_unique}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Total hits</span>
+                        <span class="metric-value">${match.total_hits}</span>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Pages</div>
+                    <div class="row-list">
+                        ${match.pages.map(p => `
+                            <div class="row">
+                                <span class="row-label">${p.page}</span>
+                                <div class="row-bar-wrap"><div class="row-bar" style="width:${Math.round(p.hits / maxPageHits * 100)}%"></div></div>
+                                <span class="row-count">${p.hits}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Sources</div>
+                    <div class="row-list">
+                        ${match.sources.map(s => `
+                            <div class="row">
+                                <span class="row-label">${s.source}</span>
+                                <div class="row-bar-wrap"><div class="row-bar" style="width:${Math.round(s.hits / maxSourceHits * 100)}%; background:#10b981"></div></div>
+                                <span class="row-count">${s.hits}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+</script>
+
+</html>
