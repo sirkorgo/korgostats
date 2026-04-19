@@ -33,8 +33,13 @@
                     </span></button>
             </div>
             <div class="post" id="results">
+                <h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Analytics</h3>
                 <p style="text-align: center;">Enter a site name in the searchbox above to view a site's statistics.
                     Make sure to include the subdomain.</p>
+            </div>
+            <div class="post">
+                <h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Documentation</h3>
+                <span id="readme"></span>
             </div>
         </main>
     </section>
@@ -48,6 +53,14 @@
     </footer>
 </body>
 <script src="./config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    fetch('https://raw.githubusercontent.com/sirkorgo/korgostats/main/README.md')
+        .then(r => r.text())
+        .then(md => {
+            document.getElementById('readme').innerHTML = marked.parse(md);
+        });
+</script>
 <script>
     async function lookup() {
         const site = document.getElementById('search').value.trim();
