@@ -187,7 +187,7 @@ body > *:not(.navContainer) {
     width: auto;
 }
 
-.site-header { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 4px; }
+.site-header { display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0; margin-bottom: 4px; }
 .site-icon { width: 36px; height: 36px; border-radius: 8px; background: #eaeaea; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #555; flex-shrink: 0; }
 .site-name { font-size: 17px; font-weight: 700; color: #111; }
 .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
