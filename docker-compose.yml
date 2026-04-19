@@ -1,5 +1,6 @@
 services:
    korgostats:
+     restart: unless-stopped
      container_name: korgostats
      image: node:20-alpine
      working_dir: /app
