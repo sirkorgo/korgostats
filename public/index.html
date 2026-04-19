@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="./styles.css">
+    <title>Korgostats</title>
     <link rel="icon" type="image/x-icon" href="https://www.sirkorgo.com/src/img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet"
@@ -73,7 +74,7 @@
         const match = data.find(s => s.site === site);
 
         if (!match) {
-            document.getElementById('results').innerHTML = '<h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Something went wrong</h3><p style="text-align:center">No entries found for ' + site + '</p><span style="display: flex; justify-content: center; align-items: center; margin-top: 5px;"><a href="./"><button>Try Again</button></a></span>';
+            document.getElementById('results').innerHTML = '<h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Something went wrong</h3><p style="text-align:center">No entries found for ' + site + '</p><span style="display: flex; justify-content: center; align-items: center; margin-top: 5px;"><a href="./" style="width: 100%"><button style="width: 100%;">Try Again</button></a></span>';
             return;
         }
 
@@ -124,7 +125,7 @@
                         `).join('')}
                     </div>
                 </div>
-                <span style="display: flex; justify-content: center; align-items: center; margin-top: 5px;"><a href="./"><button class="basic">New Query</button></a></span>
+                <span style="display: flex; justify-content: center; align-items: center; margin-top: 5px;"><a href="./" style="width: 100%"><button class="basic" style="width: 100%;">New Query</button></a></span>
             </div>
         `;
     }
