@@ -1,5 +1,5 @@
 # 📊 Korgostats
-A quick self-hosted analytics tool powered by Node.js, Express, and SQLite
+A simple self-hosted analytics tool that doesn't sell your data. Powered by Node.js, Express, and SQLite.
 
 [API Reference](#api-reference) • [Self-hosted Setup](#self-hosting-korgostats) • [Dashboard](https://stats.sirkorgo.com)
 
