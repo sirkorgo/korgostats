@@ -12,7 +12,7 @@
     <div class="bg-layer"></div>
     <section class="container">
         <nav>
-            <img src="https://www.sirkorgo.com/src/img/sitelogo.webp" width="50px" height="40px">
+            <a href="./"><img src="https://www.sirkorgo.com/src/img/sitelogo.webp" width="50px" height="40px"></a>
             <h3 style="margin: 0;">Korgostats</h3>
             <div style="display: flex; justify-content: flex-end; width: 100%;">
                 <a href="https://github.com/sirkorgo/korgostats"><svg aria-hidden="true" focusable="false"
@@ -34,8 +34,8 @@
             </div>
             <div class="post" id="results">
                 <h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Analytics</h3>
-                <p style="text-align: center;">Enter a site name in the searchbox above to view a site's statistics.
-                    Make sure to include the subdomain.</p>
+                <p style="text-align: center;">Enter a domain name in the searchbox above to view a registered site's
+                    statistics.</p>
             </div>
             <div class="post">
                 <h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Documentation</h3>
@@ -72,7 +72,7 @@
         const match = data.find(s => s.site === site);
 
         if (!match) {
-            document.getElementById('results').innerHTML = '<p style="text-align:center">No entries found for ' + site + '</p>';
+            document.getElementById('results').innerHTML = '<h3 style="border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">Something went wrong</h3><p style="text-align:center">No entries found for ' + site + '</p><span style="display: flex; justify-content: center; align-items: center; margin-top: 5px;"><a href="./"><button>Try Again</button></a></span>';
             return;
         }
 
@@ -123,6 +123,7 @@
                         `).join('')}
                     </div>
                 </div>
+                <span style="display: flex; justify-content: center; align-items: center; margin-top: 5px;"><a href="./"><button class="basic">New Query</button></a></span>
             </div>
         `;
     }
