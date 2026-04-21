@@ -6,7 +6,7 @@ A simple self-hosted analytics tool that doesn't sell your data. Powered by Node
 ## Setup Korgostats on Your Site
 For those who don't want to self host the server needed for Korgostats, you can use my instance hosted on korgoserver for free, forever.
 
-**To add tracking**, paste this snippet in your HTML file just before </body>
+**To add tracking**, paste this snippet in your HTML file just before `</body>`
 ```html
 <script>
     const site = location.hostname.replace(/^www\./, '');
@@ -25,7 +25,7 @@ For those who don't want to self host the server needed for Korgostats, you can 
 **That's it!** Your site now has simple analytics. To see the stats, visit my instance's [dashboard](https://stats.sirkorgo.com) and enter your site's domain in the search box.
 
 **To display a visitor counter on your site**:
-First, add this script in your HTML just before </body>:
+First, add this script in your HTML just before `</body>`:
 ```html
 <script>
     const site = location.hostname.replace(/^www\./, '');
@@ -52,7 +52,7 @@ git clone https://github.com/sirkorgo/korgostats.git
 cd korgostats
 docker compose up -d
 ```
-**That's it!** The dashboard and API will be hosted at [your.server.address]://3100 by default.
+**That's it!** The dashboard and API will be hosted at [your.server.address]:3100 by default.
 
 Detailed Instructions:
 First, clone the repo
